@@ -1,0 +1,154 @@
+/* 1. VARIABLES GLOBALES (Personalización rápida) */
+    :root {
+        --primary-color: #534e52;
+        --secondary-color: #696568;
+        --hover-color: #222020;
+        --bg-color: #f4f7f6;
+        --card-bg: #ffffff;
+        --text-color: #333;
+        --error-bg: rgba(216, 148, 216, 0.57); /* El color d894d891 que tenías */
+        --shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    /* 2. ESTILOS BASE */
+    * { box-sizing: border-box; } /* Asegura que el padding no rompa el ancho */
+
+    body { 
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; 
+        max-width: 1200px; 
+        margin: auto; 
+        padding: 15px; 
+        background-color: var(--bg-color); 
+        color: var(--text-color);
+        line-height: 1.6;
+    }
+
+    .header { 
+        text-align: center; 
+        border-bottom: 3px solid var(--primary-color); 
+        padding-bottom: 10px; 
+        margin-bottom: 30px; 
+    }
+
+    /* 3. MENÚ Y ENTRADA DE DATOS (Flexbox) */
+    .menu-container { 
+        background: var(--card-bg); 
+        padding: 25px; 
+        border-radius: 12px; 
+        box-shadow: var(--shadow); 
+        margin-bottom: 30px;
+        display: flex;
+        flex-wrap: wrap; 
+        gap: 15px;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .input-group { 
+        display: flex; 
+        flex-direction: column; 
+        gap: 8px; 
+        min-width: 220px; 
+        flex: 1; 
+    }
+
+    .input-group label { font-weight: bold; font-size: 0.9rem; }
+
+    select, input, button { 
+        padding: 12px; 
+        border-radius: 8px; 
+        border: 1px solid #ccc; 
+        font-size: 16px; 
+        outline: none;
+    }
+
+    button { 
+        background-color: var(--secondary-color); 
+        color: white; 
+        cursor: pointer; 
+        border: none; 
+        font-weight: bold; 
+        transition: all 0.3s ease;
+        min-width: 180px;
+    }
+
+    button:hover { 
+        background-color: var(--hover-color); 
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* 4. GRID DE NOTICIAS (Responsivo) */
+    #resultados {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+        gap: 25px;
+    }
+
+    /* 5. TARJETAS (Cards) */
+    .card { 
+        background: var(--card-bg); 
+        border-radius: 12px; 
+        overflow: hidden; 
+        display: flex; 
+        flex-direction: column; 
+        box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover { 
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1); 
+    }
+
+    .card img { 
+        width: 100%; 
+        height: 180px; 
+        object-fit: cover; 
+        background-color: #eee;
+    }
+
+    .info { 
+        padding: 18px; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: space-between; 
+        flex-grow: 1; 
+    }
+
+    .info h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
+    .info p { font-size: 0.95rem; color: #555; margin-bottom: 15px; }
+
+    /* 6. MENSAJES DE ERROR */
+    .error-msg { 
+        color: #222020; 
+        background: var(--error-bg); 
+        padding: 15px; 
+        border-radius: 8px; 
+        border: 1px solid #f5c2c7; 
+        text-align: center;
+        grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+    }
+
+    /* 7. MEDIA QUERIES (Adaptación a dispositivos) */
+
+    /* TV y Pantallas Ultra-Wide */
+    @media (min-width: 1024px) {
+        body { padding: 40px; }
+        #resultados { grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); }
+    }
+
+    /* Tablets (Modo horizontal en cards) */
+    @media (min-width: 650px) and (max-width: 1023px) {
+        .card { flex-direction: row; } 
+        .card img { width: 35%; height: auto; min-height: 200px; }
+        .info { width: 65%; }
+    }
+
+    /* Móviles y Navegadores pequeños */
+    @media (max-width: 649px) {
+        .menu-container { padding: 15px; flex-direction: column; align-items: stretch; }
+        .input-group { min-width: 100%; }
+        button { width: 100%; }
+        h1 { font-size: 1.4rem; }
+    }
